@@ -17,7 +17,6 @@ Referensi: [Forecasting dengan LSTM](https://www.kaggle.com/code/jeanfi/forecast
 
 - Volatilitas Harga Saham: Harga saham BBNI sangat fluktuatif dan sulit diprediksi dengan metode konvensional.
 - Kurangnya Model Prediksi Akurat: Model prediksi yang ada belum mampu memberikan akurasi yang memadai untuk pengambilan keputusan.
-- 
 
 ### Goals
 
@@ -26,7 +25,6 @@ Referensi: [Forecasting dengan LSTM](https://www.kaggle.com/code/jeanfi/forecast
 
     ### Solution statements
     - Model Recurrent Neural Network (RNN): Menggunakan model RNN, khususnya LSTM atau GRU, karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
-    - Model Time Series (ARIMA): Menggunakan model ARIMA sebagai pembanding atau baseline karena model ini umum digunakan dalam peramalan deret waktu.
     - Hyperparameter Tuning: Melakukan tuning pada hyperparameter model RNN untuk meningkatkan akurasi prediksi.
   
 ## Data Understanding
@@ -39,22 +37,36 @@ Data yang digunakan dalam proyek ini adalah data historis harga saham BBNI yang 
 - Harga Terendah (Low): Harga terendah saham pada hari tersebut.
 - Harga Penutupan (Close): Harga saham saat penutupan pasar.
 - Volume: Volume saham yang diperdagangkan.
+  
+Data tidak memiliki missing value 
+
+Referensi: [Saham BBNI di Yahoo finance](https://finance.yahoo.com/quote/BBNI.JK/)
 
 ## Exploratory Data Analysis (EDA)
 
-Dilakukan visualisasi data untuk melihat tren harga saham, volume perdagangan, dan korelasi antar fitur. Analisis statistik deskriptif juga dilakukan untuk memahami distribusi dan karakteristik data.
+Dilakukan visualisasi data untuk melihat tren harga saham. Dan mendapatkan harga terakhir saham pada tanggal 14 februari 2025 berada diharga 4310.
 
 ## Data Preparation
 
 **Tahap persiapan data meliputi**: 
-- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance.
-- Pembersihan Data: Menangani data yang hilang (missing values) jika ada.
-- Membuat fitur baru jika diperlukan, seperti indikator teknikal
+- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance pertanggan 01-01-2020 dan seterusnya dan total data yang digunakan berjumlah 1240.
 - Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
-- Pembentukan Data Latih dan Data Uji: Membagi data menjadi data pelatihan, validasi, dan pengujian.
+- Pembentukan Data Latih dan Data Uji: Membagi data menjadi data pelatihan dan pengujian.
+- mengambil data dari kolom close untuk dijadikan harga price
 
 ## Modeling
 Model yang digunakan dalam proyek ini adalah model Recurrent Neural Network (RNN) dengan arsitektur LSTM atau GRU. Model ini dipilih karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
+### Arsitektur model
+SimpleRNN (Recurrent Neural Network):
+- units=32: Lapisan ini memiliki 32 unit atau neuron. Setiap unit RNN memiliki memori internal yang memungkinkan mereka untuk memproses urutan data dan mempertahankan informasi dari langkah waktu sebelumnya.
+- input_shape=(lookback, 1): Ini menentukan bentuk masukan ke lapisan RNN.
+lookback: Ini adalah jumlah langkah waktu ke belakang yang digunakan untuk memprediksi nilai berikutnya dalam urutan. Misalnya, jika lookback=10, model akan melihat 10 nilai sebelumnya untuk memprediksi nilai selanjutnya.
+- 1: Ini menunjukkan bahwa setiap langkah waktu memiliki satu fitur. Dalam kasus deret waktu univariat (satu variabel), nilainya adalah 1.
+Dense :
+- units=1: Lapisan ini adalah lapisan fully connected yang memiliki satu neuron. Ini digunakan untuk menghasilkan output akhir model, yang dalam hal ini adalah prediksi nilai tunggal.
+Cara kerja algoritma :
+
+Lapisan SimpleRNN memproses urutan data langkah demi langkah. Pada setiap langkah waktu, unit RNN menerima input dan status tersembunyi dari langkah waktu sebelumnya. Unit RNN kemudian memperbarui status tersembunyi dan menghasilkan output. 
 
 ## Kelebihan dan Kekurangan RNN
 ### Kelebihan:
@@ -73,6 +85,11 @@ Metrik evaluasi yang digunakan adalah Mean Squared Error (MSE) dan Mean Absolute
 - Mean Squared Error (MSE): Rata-rata kuadrat perbedaan antara prediksi dan nilai aktual.
 - Mean Absolute Error (MAE): Rata-rata nilai absolut perbedaan antara prediksi dan nilai aktual.
   
+Nilai MSE 12780.9 menunjukkan bahwa rata-rata kuadrat kesalahan prediksi adalah sekitar 12780.9 unit (kuadrat dari satuan harga saham) Nilai MAE 92.33 berarti bahwa rata-rata kesalahan prediksi adalah sekitar 92.33 unit (satuan harga saham).
+  
 ## Hasil Evaluasi
-Berdasarkan hasil evaluasi, model RNN dengan arsitektur LSTM atau GRU menunjukkan kinerja yang lebih baik dibandingkan model ARIMA atau model baseline lainnya. Nilai MSE dan MAE yang diperoleh cukup rendah, menunjukkan bahwa model mampu memprediksi harga saham BBNI dengan cukup akurat.
+Berdasarkan hasil evaluasi, model RNN dengan arsitektur LSTM atau GRU menunjukkan kinerja baik. Nilai MSE dan MAE yang diperoleh cukup rendah, menunjukkan bahwa model mampu memprediksi harga saham BBNI dengan cukup akurat. dengan ini dari problem statements diatas kita sudah memenuhi goals yang ada yaitu mengembangkan model prediksi saham dan rekomendasi trading berdasarkan hasil prediksi.
+
+![image](https://github.com/user-attachments/assets/0d1d843b-35b5-4f4b-8481-47d58c49fbb3)
+
 
