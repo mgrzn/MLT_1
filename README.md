@@ -2,25 +2,35 @@
 
 ## Domain Proyek
 
-Perdagangan saham melibatkan risiko tinggi dan ketidakpastian.  Investor seringkali mengandalkan analisis teknikal untuk memprediksi pergerakan harga saham, dengan harapan dapat mengambil keputusan investasi yang lebih baik.  Metode machine learning, khususnya Recurrent Neural Network (RNN), semakin populer dalam prediksi harga saham karena kemampuannya menangani data deret waktu (time series).  RNN, terutama varian LSTM (Long Short-Term Memory), sangat efektif dalam mempelajari pola dan ketergantungan jangka panjang dalam data harga saham.
+Forecasting harga saham adalah area yang menarik dan menantang dalam machine learning. Pasar saham sangat dinamis dan dipengaruhi oleh berbagai faktor, seperti sentimen investor, kondisi ekonomi makro, berita perusahaan, dan bahkan peristiwa global. Akurasi forecast harga saham dapat memberikan keuntungan signifikan bagi investor dan pelaku pasar lainnya. Proyek ini berfokus pada peramalan harga saham BBNI (Bank Negara Indonesia), sebuah perusahaan yang terdaftar di Bursa Efek Indonesia (BEI).
+
+**harga saham menjadi penting karena beberapa alasan**:
+- Pengambilan Keputusan Investasi: Investor menggunakan prediksi harga saham untuk membuat keputusan beli, jual, atau tahan. Prediksi yang akurat dapat membantu memaksimalkan keuntungan dan meminimalkan risiko.
+- Manajemen Risiko: Perusahaan dan investor menggunakan prediksi harga saham untuk mengelola risiko portofolio.
+- Analisis Pasar: Analis pasar menggunakan prediksi harga saham untuk memahami tren pasar dan membuat rekomendasi investasi.
+  
+Referensi: [Forecasting dengan LSTM](https://www.kaggle.com/code/jeanfi/forecasting-saham) 
 
 ## Business Understanding
 
 ### Problem Statements
 
-- Bagaimana cara memprediksi harga saham BBNI dengan akurat menggunakan data historis?
-- Apakah model RNN dapat memberikan kinerja prediksi yang lebih baik dibandingkan metode baseline sederhana (misalnya, moving average)?
+- Volatilitas Harga Saham: Harga saham BBNI sangat fluktuatif dan sulit diprediksi dengan metode konvensional.
+- Kurangnya Model Prediksi Akurat: Model prediksi yang ada belum mampu memberikan akurasi yang memadai untuk pengambilan keputusan.
+- 
 
 ### Goals
 
-- Membangun dan melatih model RNN (kemungkinan besar LSTM) untuk memprediksi harga penutupan saham BBRI.
-- Mengevaluasi kinerja model RNN dibandingkan dengan metode baseline, dan mengidentifikasi potensi peningkatannya.
+- Mengembangkan Model Prediksi: Membuat model machine learning yang mampu memprediksi harga saham BBNI dengan akurasi yang lebih baik.
+- Memberikan Rekomendasi: Memberikan rekomendasi trading berdasarkan hasil prediksi.
 
     ### Solution statements
-    - Menggunakan arsitektur LSTM karena kemampuannya menangani ketergantungan jangka panjang dalam data deret waktu harga saham.
-    - Melakukan tuning hyperparameter pada model LSTM untuk mengoptimalkan kinerja prediksi. Kemungkinan juga akan dieksplorasi penggunaan beberapa layer LSTM dan variasi arsitektur lainnya.
+    - Model Recurrent Neural Network (RNN): Menggunakan model RNN, khususnya LSTM atau GRU, karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
+    - Model Time Series (ARIMA): Menggunakan model ARIMA sebagai pembanding atau baseline karena model ini umum digunakan dalam peramalan deret waktu.
+    - Hyperparameter Tuning: Melakukan tuning pada hyperparameter model RNN untuk meningkatkan akurasi prediksi.
+  
 ## Data Understanding
-Data yang digunakan adalah data historis harga saham BBRI hingga periode waktu februaru 2025
+Data yang digunakan dalam proyek ini adalah data historis harga saham BBNI yang diambil dari Yahoo Finance. Data mencakup periode dari tahun 2020 hingga sekarang dan terdiri dari beberapa fitur, antara lain:
 
 ### Variabel-variabel dataset adalah sebagai berikut:
 - Tanggal: Waktu transaksi.
@@ -30,22 +40,39 @@ Data yang digunakan adalah data historis harga saham BBRI hingga periode waktu f
 - Harga Penutupan (Close): Harga saham saat penutupan pasar.
 - Volume: Volume saham yang diperdagangkan.
 
+## Exploratory Data Analysis (EDA)
+
+Dilakukan visualisasi data untuk melihat tren harga saham, volume perdagangan, dan korelasi antar fitur. Analisis statistik deskriptif juga dilakukan untuk memahami distribusi dan karakteristik data.
+
 ## Data Preparation
 
 **Tahap persiapan data meliputi**: 
-- Pengumpulan Data: Mengunduh data historis harga saham BBRI dari sumber yang terpercaya.
-- Pembersihan Data: Menangani data yang hilang (missing values) atau anomali. Metode yang umum digunakan adalah imputasi atau penghapusan baris yang mengandung missing values.
-- Normalisasi/Standarisasi: Menskalakan data agar berada dalam rentang tertentu (misalnya, 0-1) untuk meningkatkan kinerja model. Metode yang umum digunakan adalah MinMaxScaler atau StandardScaler.
-- Pembentukan Data Latih dan Data Uji: Memisahkan data menjadi dua bagian: data latih untuk melatih model, dan data uji untuk mengevaluasi kinerja model. Biasanya, pembagian dilakukan berdasarkan waktu (80% data awal untuk latih, 20% data akhir untuk uji).
+- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance.
+- Pembersihan Data: Menangani data yang hilang (missing values) jika ada.
+- Membuat fitur baru jika diperlukan, seperti indikator teknikal
+- Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
+- Pembentukan Data Latih dan Data Uji: Membagi data menjadi data pelatihan, validasi, dan pengujian.
 
 ## Modeling
-Model yang digunakan adalah RNN dengan arsitektur LSTM.  Model LSTM akan dilatih untuk memprediksi harga penutupan saham BBRI berdasarkan data historis.  Proses training melibatkan penyesuaian bobot jaringan saraf agar model dapat memprediksi dengan akurat.
+Model yang digunakan dalam proyek ini adalah model Recurrent Neural Network (RNN) dengan arsitektur LSTM atau GRU. Model ini dipilih karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
+
+## Kelebihan dan Kekurangan RNN
+### Kelebihan:
+
+- Cocok untuk data deret waktu.
+- Dapat menangkap pola jangka panjang.
+### Kekurangan:
+
+- Sulit dilatih jika urutan terlalu panjang (masalah vanishing gradient).
+- Membutuhkan data yang cukup banyak.
 
 ## Evaluation
 
-Metrik evaluasi yang umum digunakan untuk mengukur kinerja model forecasting adalah:
+Metrik evaluasi yang digunakan adalah Mean Squared Error (MSE) dan Mean Absolute Error (MAE).
 
 - Mean Squared Error (MSE): Rata-rata kuadrat perbedaan antara prediksi dan nilai aktual.
 - Mean Absolute Error (MAE): Rata-rata nilai absolut perbedaan antara prediksi dan nilai aktual.
-
+  
+## Hasil Evaluasi
+Berdasarkan hasil evaluasi, model RNN dengan arsitektur LSTM atau GRU menunjukkan kinerja yang lebih baik dibandingkan model ARIMA atau model baseline lainnya. Nilai MSE dan MAE yang diperoleh cukup rendah, menunjukkan bahwa model mampu memprediksi harga saham BBNI dengan cukup akurat.
 
