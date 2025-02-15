@@ -49,10 +49,11 @@ Dilakukan visualisasi data untuk melihat tren harga saham. Dan mendapatkan harga
 ## Data Preparation
 
 **Tahap persiapan data meliputi**: 
-- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance pertanggan 01-01-2020 dan seterusnya dan total data yang digunakan berjumlah 1240.
+- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance pertanggal 01-01-2020 dan seterusnya dan total data yang digunakan berjumlah 1240.
 - Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
 - Pembentukan Data Latih dan Data Uji: Membagi data menjadi data pelatihan dan pengujian.
 - mengambil data dari kolom close untuk dijadikan harga price
+- menghapus data stockssplit dan dividen
 
 ## Modeling
 Model yang digunakan dalam proyek ini adalah model Recurrent Neural Network (RNN) dengan arsitektur LSTM atau GRU. Model ini dipilih karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
