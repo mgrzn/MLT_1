@@ -50,6 +50,8 @@ Dilakukan visualisasi data untuk melihat tren harga saham :
 - 13 Februari kembali mengalami tekanan kecil, tetapi masih dalam rentang stabil.
 - 14 Februari terjadi kenaikan harga yang kuat, ditandai dengan candle hijau besar, menandakan sentimen bullish.
 - Harga terlihat cukup volatile antara 10-14 Februari.
+- ![image](https://github.com/user-attachments/assets/979e8959-a57c-4d5d-874c-0e5239137e0f)
+
   
 ## Data Preparation
 
