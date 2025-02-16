@@ -40,20 +40,29 @@ Data yang digunakan dalam proyek ini adalah data historis harga saham BBNI yang 
   
 Data tidak memiliki missing value 
 
-Referensi: [Saham BBNI di Yahoo finance](https://finance.yahoo.com/quote/BBNI.JK/)
+Dataset: [Saham BBNI di Yahoo finance](https://finance.yahoo.com/quote/BBNI.JK/)
 
 ## Exploratory Data Analysis (EDA)
 
-Dilakukan visualisasi data untuk melihat tren harga saham. Dan mendapatkan harga terakhir saham pada tanggal 14 februari 2025 berada diharga 4310.
-
+Dilakukan visualisasi data untuk melihat tren harga saham :
+- Pada 10 dan 11 Februari, harga saham BBNI mengalami tekanan jual
+- 12 Februari menunjukkan lonjakan harga signifikan dengan volume transaksi yang meningkat.
+- 13 Februari kembali mengalami tekanan kecil, tetapi masih dalam rentang stabil.
+- 14 Februari terjadi kenaikan harga yang kuat, ditandai dengan candle hijau besar, menandakan sentimen bullish.
+- Harga terlihat cukup volatile antara 10-14 Februari.
+  
 ## Data Preparation
 
 **Tahap persiapan data meliputi**: 
-- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance pertanggal 01-01-2020 dan seterusnya dan total data yang digunakan berjumlah 1240.
-- Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
-- Pembentukan Data Latih dan Data Uji: Membagi data menjadi data pelatihan dan pengujian.
+- Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance dengan libarary yfinance.
 - mengambil data dari kolom close untuk dijadikan harga price
 - menghapus data stockssplit dan dividen
+- Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
+- Pembentukan Data Latih dan Data Uji: Membagi data menjadi 80% data pelatihan dan 80% data pengujian.
+- memfilter data frame mulai tanggal 01-01-2020 dan membuat salinan (copy) dari DataFrame df yang berisi data historis harga saham
+- ![image](https://github.com/user-attachments/assets/3395a16c-f8f2-4c41-a9ad-54b0c5fb14b2)
+
+
 
 ## Modeling
 Model yang digunakan dalam proyek ini adalah model Recurrent Neural Network (RNN) dengan arsitektur LSTM atau GRU. Model ini dipilih karena kemampuannya dalam memproses data deret waktu dan menangkap pola temporal.
