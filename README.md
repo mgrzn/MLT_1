@@ -40,7 +40,7 @@ Data yang digunakan dalam proyek ini adalah data historis harga saham BBNI yang 
   
 Data tidak memiliki missing value 
 
-Dataset: [Saham BBNI di Yahoo finance](https://finance.yahoo.com/quote/BBNI.JK/)
+Dataset: [sumber data saham BBNI di Yahoo finance](https://finance.yahoo.com/quote/BBNI.JK/)
 
 ## Exploratory Data Analysis (EDA)
 
@@ -57,14 +57,15 @@ Dilakukan visualisasi data untuk melihat tren harga saham :
 
 **Tahap persiapan data meliputi**: 
 - Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance dengan libarary yfinance.
-- mengambil data dari kolom close untuk dijadikan harga price
 - menghapus data stockssplit dan dividen
-- mengecek missing value
+- memfilter data frame mulai tanggal 01-01-2020 dan membuat salinan (copy) dari DataFrame df yang berisi data historis harga saham
+- ![image](https://github.com/user-attachments/assets/b46a1d2e-d6b8-40af-9a15-fd2a461dcec5)
+- mengecek missing value dan tidak ada
+- mengambil data dari kolom close untuk dijadikan harga price
 - membuat data prices diambil dari kolom close dan dijadikan array 2d dengan shape (1240,1)
 - Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
 - Pembentukan Data Latih dan Data Uji: Membagi data menjadi 80% data pelatihan dan 80% data pengujian.
-- memfilter data frame mulai tanggal 01-01-2020 dan membuat salinan (copy) dari DataFrame df yang berisi data historis harga saham
-- ![image](https://github.com/user-attachments/assets/3395a16c-f8f2-4c41-a9ad-54b0c5fb14b2)
+- membuat dataset latihan dan uji dengan konsep lookback
 
 
 
@@ -99,11 +100,11 @@ Metrik evaluasi yang digunakan adalah Mean Squared Error (MSE) dan Mean Absolute
 - Mean Squared Error (MSE): Rata-rata kuadrat perbedaan antara prediksi dan nilai aktual.
 - Mean Absolute Error (MAE): Rata-rata nilai absolut perbedaan antara prediksi dan nilai aktual.
   
-Nilai MSE 20164.6 menunjukkan bahwa rata-rata kuadrat kesalahan prediksi adalah sekitar 20164.6 unit (kuadrat dari satuan harga saham) Nilai MAE 114.24 berarti bahwa rata-rata kesalahan prediksi adalah sekitar 114.24 unit (satuan harga saham).
+Nilai MSE 12194.16 menunjukkan bahwa rata-rata kuadrat kesalahan prediksi adalah sekitar 12194.16 unit (kuadrat dari satuan harga saham) Nilai MAE 85.12 berarti bahwa rata-rata kesalahan prediksi adalah sekitar 85.12 unit (satuan harga saham).
   
 ## Hasil Evaluasi
 Berdasarkan hasil evaluasi, model RNN dengan arsitektur LSTM atau GRU menunjukkan kinerja baik. Nilai MSE dan MAE yang diperoleh cukup rendah, menunjukkan bahwa model mampu memprediksi harga saham BBNI dengan cukup akurat. dengan ini dari problem statements diatas kita sudah memenuhi goals yang ada yaitu mengembangkan model prediksi saham dan rekomendasi trading berdasarkan hasil prediksi.
 
-![image](https://github.com/user-attachments/assets/0d1d843b-35b5-4f4b-8481-47d58c49fbb3)
+![image](https://github.com/user-attachments/assets/d727baa2-bae3-47f0-8c4a-2678b760f706)
 
 
