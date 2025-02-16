@@ -59,6 +59,8 @@ Dilakukan visualisasi data untuk melihat tren harga saham :
 - Pengumpulan Data: Mengunduh data historis harga saham BBNI dari Yahoo Finance dengan libarary yfinance.
 - mengambil data dari kolom close untuk dijadikan harga price
 - menghapus data stockssplit dan dividen
+- mengecek missing value
+- membuat data prices diambil dari kolom close dan dijadikan array 2d dengan shape (1240,1)
 - Normalisasi/Standarisasi: Menskalakan data ke rentang tertentu menggunakan min-max scaling atau standardization.
 - Pembentukan Data Latih dan Data Uji: Membagi data menjadi 80% data pelatihan dan 80% data pengujian.
 - memfilter data frame mulai tanggal 01-01-2020 dan membuat salinan (copy) dari DataFrame df yang berisi data historis harga saham
