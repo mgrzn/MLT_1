@@ -99,7 +99,7 @@ Metrik evaluasi yang digunakan adalah Mean Squared Error (MSE) dan Mean Absolute
 - Mean Squared Error (MSE): Rata-rata kuadrat perbedaan antara prediksi dan nilai aktual.
 - Mean Absolute Error (MAE): Rata-rata nilai absolut perbedaan antara prediksi dan nilai aktual.
   
-Nilai MSE 12780.9 menunjukkan bahwa rata-rata kuadrat kesalahan prediksi adalah sekitar 12780.9 unit (kuadrat dari satuan harga saham) Nilai MAE 92.33 berarti bahwa rata-rata kesalahan prediksi adalah sekitar 92.33 unit (satuan harga saham).
+Nilai MSE 20164.6 menunjukkan bahwa rata-rata kuadrat kesalahan prediksi adalah sekitar 20164.6 unit (kuadrat dari satuan harga saham) Nilai MAE 114.24 berarti bahwa rata-rata kesalahan prediksi adalah sekitar 114.24 unit (satuan harga saham).
   
 ## Hasil Evaluasi
 Berdasarkan hasil evaluasi, model RNN dengan arsitektur LSTM atau GRU menunjukkan kinerja baik. Nilai MSE dan MAE yang diperoleh cukup rendah, menunjukkan bahwa model mampu memprediksi harga saham BBNI dengan cukup akurat. dengan ini dari problem statements diatas kita sudah memenuhi goals yang ada yaitu mengembangkan model prediksi saham dan rekomendasi trading berdasarkan hasil prediksi.
